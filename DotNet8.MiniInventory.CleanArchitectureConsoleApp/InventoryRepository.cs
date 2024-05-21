@@ -22,18 +22,16 @@ public class InventoryRepository : IInventoryRepository
     public void UpdateItem(InventoryItem item)
     {
         var existingItem = _items.FirstOrDefault(i => i.Id == item.Id);
-        if (existingItem != null)
-        {
-            existingItem.Name = item.Name;
-            existingItem.Quantity = item.Quantity;
-            existingItem.Price = item.Price;
-        }
+        if (existingItem is null) return;
+        existingItem.Name = item.Name;
+        existingItem.Quantity = item.Quantity;
+        existingItem.Price = item.Price;
     }
 
     public void DeleteItem(int id)
     {
         var item = _items.FirstOrDefault(i => i.Id == id);
-        if (item != null)
+        if (item is not null)
         {
             _items.Remove(item);
         }
