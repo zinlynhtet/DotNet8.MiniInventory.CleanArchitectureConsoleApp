@@ -1,39 +1,47 @@
 public class InventoryRepository : IInventoryRepository
 {
-    private readonly List<InventoryItem> _items = new();
+    private readonly List<InventoryItem> _items = new List<InventoryItem>();
     private int _nextId = 1;
 
-    public void AddItem(InventoryItem item)
+    public Task AddItem(InventoryItem item)
     {
         item.Id = _nextId++;
         _items.Add(item);
+        return Task.CompletedTask;
     }
 
-    public List<InventoryItem> GetItems()
+    public Task<List<InventoryItem>> GetItems()
     {
-        return _items;
+        return Task.FromResult(_items);
     }
 
-    public InventoryItem GetItemById(int id)
-    {
-        return _items.FirstOrDefault(i => i.Id == id);
-    }
-
-    public void UpdateItem(InventoryItem item)
-    {
-        var existingItem = _items.FirstOrDefault(i => i.Id == item.Id);
-        if (existingItem is null) return;
-        existingItem.Name = item.Name;
-        existingItem.Quantity = item.Quantity;
-        existingItem.Price = item.Price;
-    }
-
-    public void DeleteItem(int id)
+    public Task<InventoryItem> GetItemById(int id)
     {
         var item = _items.FirstOrDefault(i => i.Id == id);
-        if (item is not null)
+        return Task.FromResult(item);
+    }
+
+    public Task UpdateItem(InventoryItem item)
+    {
+        var existingItem = _items.FirstOrDefault(i => i.Id == item.Id);
+        if (existingItem != null)
+        {
+            existingItem.Name = item.Name;
+            existingItem.Quantity = item.Quantity;
+            existingItem.Price = item.Price;
+        }
+
+        return Task.CompletedTask;
+    }
+
+    public Task DeleteItem(int id)
+    {
+        var item = _items.FirstOrDefault(i => i.Id == id);
+        if (item != null)
         {
             _items.Remove(item);
         }
+
+        return Task.CompletedTask;
     }
 }
