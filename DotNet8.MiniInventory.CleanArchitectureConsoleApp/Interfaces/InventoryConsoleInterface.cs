@@ -1,6 +1,3 @@
-using BetterConsoleTables;
-using DotNet8.MiniInventory.CleanArchitectureConsoleApp;
-
 public class InventoryConsoleInterface
 {
     private readonly InventoryUseCases _useCases;
