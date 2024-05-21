@@ -1,4 +1,5 @@
-﻿
+﻿using DotNet8.MiniInventory.CleanArchitectureConsoleApp;
+
 var repository = new InventoryRepository();
 var useCases = new InventoryUseCases(repository);
 var consoleInterface = new InventoryConsoleInterface(useCases);
@@ -12,7 +13,7 @@ while (true)
     Console.WriteLine("5. Exit");
     Console.Write("Select an option: ");
 
-    var option = int.Parse(Console.ReadLine());
+    var option = Console.ReadLine().ToInt();
 
     switch (option)
     {
