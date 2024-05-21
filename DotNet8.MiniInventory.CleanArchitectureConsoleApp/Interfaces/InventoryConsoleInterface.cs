@@ -1,8 +1,8 @@
 public class InventoryConsoleInterface
 {
-    private readonly InventoryUseCases _useCases;
+    private readonly InventoryService _service;
 
-    public InventoryConsoleInterface(InventoryUseCases useCases) => _useCases = useCases;
+    public InventoryConsoleInterface(InventoryService service) => _service = service;
 
     public void AddItem()
     {
@@ -13,13 +13,13 @@ public class InventoryConsoleInterface
         Console.Write("Enter item price: ");
         var price = Console.ReadLine().ToDecimal();
 
-        _useCases.AddItem(name, quantity, price);
+        _service.AddItem(name, quantity, price);
         Console.WriteLine("Item added successfully.");
     }
 
     public void ListItems()
     {
-        var items = _useCases.ListItems();
+        var items = _service.ListItems();
         if (!items.Any())
         {
             Console.WriteLine("No items found.");
@@ -33,24 +33,24 @@ public class InventoryConsoleInterface
     public void UpdateItem()
     {
         Console.Write("Enter item ID to update: ");
-        var id =  Console.ReadLine().ToInt();
+        var id = Console.ReadLine().ToInt();
         Console.Write("Enter new name: ");
         var name = Console.ReadLine();
         Console.Write("Enter new quantity: ");
-        var quantity =  Console.ReadLine().ToInt();
+        var quantity = Console.ReadLine().ToInt();
         Console.Write("Enter new price: ");
-        var price =  Console.ReadLine().ToDecimal();
+        var price = Console.ReadLine().ToDecimal();
 
-        _useCases.UpdateItem(id, name, quantity, price);
+        _service.UpdateItem(id, name, quantity, price);
         Console.WriteLine("Item updated successfully.");
     }
 
     public void DeleteItem()
     {
         Console.Write("Enter item ID to delete: ");
-        var id =  Console.ReadLine().ToInt();
+        var id = Console.ReadLine().ToInt();
 
-        _useCases.DeleteItem(id);
+        _service.DeleteItem(id);
         Console.WriteLine("Item deleted successfully.");
     }
 }
