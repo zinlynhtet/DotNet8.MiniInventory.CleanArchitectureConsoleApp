@@ -1,22 +1,20 @@
 using BetterConsoleTables;
+using DotNet8.MiniInventory.CleanArchitectureConsoleApp;
 
 public class InventoryConsoleInterface
 {
     private readonly InventoryUseCases _useCases;
 
-    public InventoryConsoleInterface(InventoryUseCases useCases)
-    {
-        _useCases = useCases;
-    }
+    public InventoryConsoleInterface(InventoryUseCases useCases) => _useCases = useCases;
 
     public void AddItem()
     {
         Console.Write("Enter item name: ");
         var name = Console.ReadLine();
         Console.Write("Enter item quantity: ");
-        var quantity = int.Parse(Console.ReadLine());
+        var quantity = Console.ReadLine().ToInt();
         Console.Write("Enter item price: ");
-        var price = decimal.Parse(Console.ReadLine());
+        var price = Console.ReadLine().ToDecimal();
 
         _useCases.AddItem(name, quantity, price);
         Console.WriteLine("Item added successfully.");
@@ -38,13 +36,13 @@ public class InventoryConsoleInterface
     public void UpdateItem()
     {
         Console.Write("Enter item ID to update: ");
-        var id = int.Parse(Console.ReadLine());
+        var id =  Console.ReadLine().ToInt();
         Console.Write("Enter new name: ");
         var name = Console.ReadLine();
         Console.Write("Enter new quantity: ");
-        var quantity = int.Parse(Console.ReadLine());
+        var quantity =  Console.ReadLine().ToInt();
         Console.Write("Enter new price: ");
-        var price = decimal.Parse(Console.ReadLine());
+        var price =  Console.ReadLine().ToDecimal();
 
         _useCases.UpdateItem(id, name, quantity, price);
         Console.WriteLine("Item updated successfully.");
@@ -53,7 +51,7 @@ public class InventoryConsoleInterface
     public void DeleteItem()
     {
         Console.Write("Enter item ID to delete: ");
-        var id = int.Parse(Console.ReadLine());
+        var id =  Console.ReadLine().ToInt();
 
         _useCases.DeleteItem(id);
         Console.WriteLine("Item deleted successfully.");
