@@ -16,16 +16,16 @@ while (true)
     switch (option)
     {
         case 1:
-            consoleInterface.AddItem();
+            await consoleInterface.AddItem();
             break;
         case 2:
-            consoleInterface.ListItems();
+            await consoleInterface.ListItems();
             break;
         case 3:
-            consoleInterface.UpdateItem();
+            await consoleInterface.UpdateItem();
             break;
         case 4:
-            consoleInterface.DeleteItem();
+            await consoleInterface.DeleteItem();
             break;
         case 5:
             return;
