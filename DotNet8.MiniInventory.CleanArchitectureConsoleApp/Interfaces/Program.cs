@@ -1,6 +1,4 @@
-﻿using DotNet8.MiniInventory.CleanArchitectureConsoleApp;
-
-var repository = new InventoryRepository();
+﻿var repository = new InventoryRepository();
 var useCases = new InventoryUseCases(repository);
 var consoleInterface = new InventoryConsoleInterface(useCases);
 
