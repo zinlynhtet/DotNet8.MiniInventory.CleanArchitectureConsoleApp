@@ -1,8 +1,8 @@
-public class InventoryUseCases
+public class InventoryService
 {
     private readonly IInventoryRepository _repository;
 
-    public InventoryUseCases(IInventoryRepository repository) => _repository = repository;
+    public InventoryService(IInventoryRepository repository) => _repository = repository;
 
     public void AddItem(string name, int quantity, decimal price)
     {
