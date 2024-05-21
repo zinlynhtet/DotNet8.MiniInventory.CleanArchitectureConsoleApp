@@ -2,9 +2,12 @@ public class InventoryService
 {
     private readonly IInventoryRepository _repository;
 
-    public InventoryService(IInventoryRepository repository) => _repository = repository;
+    public InventoryService(IInventoryRepository repository)
+    {
+        _repository = repository;
+    }
 
-    public void AddItem(string name, int quantity, decimal price)
+    public async Task AddItemAsync(string name, int quantity, decimal price)
     {
         var item = new InventoryItem
         {
@@ -12,26 +15,28 @@ public class InventoryService
             Quantity = quantity,
             Price = price
         };
-        _repository.AddItem(item);
+        await _repository.AddItem(item);
     }
 
-    public List<InventoryItem> ListItems()
+    public async Task<List<InventoryItem>> ListItems()
     {
-        return _repository.GetItems();
+        return await _repository.GetItems();
     }
 
-    public void UpdateItem(int id, string name, int quantity, decimal price)
+    public async Task UpdateItem(int id, string name, int quantity, decimal price)
     {
-        var item = _repository.GetItemById(id);
-        if (item is null) return;
-        item.Name = name;
-        item.Quantity = quantity;
-        item.Price = price;
-        _repository.UpdateItem(item);
+        var item = await _repository.GetItemById(id);
+        if (item != null)
+        {
+            item.Name = name;
+            item.Quantity = quantity;
+            item.Price = price;
+            await _repository.UpdateItem(item);
+        }
     }
 
-    public void DeleteItem(int id)
+    public async Task DeleteItem(int id)
     {
-        _repository.DeleteItem(id);
+        await _repository.DeleteItem(id);
     }
 }
