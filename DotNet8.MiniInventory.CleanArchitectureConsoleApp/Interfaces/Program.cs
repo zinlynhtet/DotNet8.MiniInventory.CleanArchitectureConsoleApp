@@ -1,5 +1,5 @@
 ﻿var repository = new InventoryRepository();
-var useCases = new InventoryUseCases(repository);
+var useCases = new InventoryService(repository);
 var consoleInterface = new InventoryConsoleInterface(useCases);
 
 while (true)
