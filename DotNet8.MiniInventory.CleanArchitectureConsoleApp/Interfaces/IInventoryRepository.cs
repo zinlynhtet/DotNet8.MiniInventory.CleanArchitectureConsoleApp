@@ -1,8 +1,8 @@
 public interface IInventoryRepository
 {
-    void AddItem(InventoryItem item);
-    List<InventoryItem> GetItems();
-    InventoryItem GetItemById(int id);
-    void UpdateItem(InventoryItem item);
-    void DeleteItem(int id);
+    Task AddItem(InventoryItem item);
+    Task<List<InventoryItem>> GetItems();
+    Task<InventoryItem> GetItemById(int id);
+    Task UpdateItem(InventoryItem item);
+    Task DeleteItem(int id);
 }
