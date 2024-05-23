@@ -8,8 +8,10 @@ public class InventoryConsoleInterface
     {
         Console.Write("Enter item name: ");
         var name = Console.ReadLine();
+        
         Console.Write("Enter item quantity: ");
         var quantity = Console.ReadLine().ToInt();
+        
         Console.Write("Enter item price: ");
         var price = Console.ReadLine().ToDecimal();
 
@@ -26,7 +28,7 @@ public class InventoryConsoleInterface
             return;
         }
 
-        var table = new Table(TableConfiguration.Unicode()).From<InventoryItem>(items.ToList());
+        var table = new Table(TableConfiguration.Unicode()).From(items.ToList());
         Console.WriteLine(table.ToString());
     }
 
@@ -34,10 +36,13 @@ public class InventoryConsoleInterface
     {
         Console.Write("Enter item ID to update: ");
         var id = Console.ReadLine().ToInt();
+        
         Console.Write("Enter new name: ");
         var name = Console.ReadLine();
+        
         Console.Write("Enter new quantity: ");
         var quantity = Console.ReadLine().ToInt();
+        
         Console.Write("Enter new price: ");
         var price = Console.ReadLine().ToDecimal();
 
