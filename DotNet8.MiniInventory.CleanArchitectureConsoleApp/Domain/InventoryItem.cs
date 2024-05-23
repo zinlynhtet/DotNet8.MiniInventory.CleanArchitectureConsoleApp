@@ -4,4 +4,15 @@ public class InventoryItem
     public string? Name { get; set; }
     public int Quantity { get; set; }
     public decimal Price { get; set; }
+
+    public InventoryItem()
+    {
+    }
+
+    public InventoryItem(string name, int quantity, decimal price)
+    {
+        name = name;
+        quantity = quantity;
+        price = price;
+    }
 }
