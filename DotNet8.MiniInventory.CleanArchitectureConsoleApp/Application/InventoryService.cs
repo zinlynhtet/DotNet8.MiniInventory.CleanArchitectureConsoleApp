@@ -6,12 +6,7 @@ public class InventoryService
 
     public async Task AddItemAsync(string name, int quantity, decimal price)
     {
-        var item = new InventoryItem
-        {
-            Name = name,
-            Quantity = quantity,
-            Price = price
-        };
+        var item = new InventoryItem(name, quantity, price);
         await _repository.AddItem(item);
     }
 
