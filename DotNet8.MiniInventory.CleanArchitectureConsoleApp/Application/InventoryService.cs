@@ -2,10 +2,7 @@ public class InventoryService
 {
     private readonly IInventoryRepository _repository;
 
-    public InventoryService(IInventoryRepository repository)
-    {
-        _repository = repository;
-    }
+    public InventoryService(IInventoryRepository repository) => _repository = repository;
 
     public async Task AddItemAsync(string name, int quantity, decimal price)
     {
