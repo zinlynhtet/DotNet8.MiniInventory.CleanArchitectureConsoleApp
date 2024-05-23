@@ -24,12 +24,10 @@ public class InventoryRepository : IInventoryRepository
     public Task UpdateItem(InventoryItem item)
     {
         var existingItem = _items.FirstOrDefault(i => i.Id == item.Id);
-        if (existingItem != null)
-        {
-            existingItem.Name = item.Name;
-            existingItem.Quantity = item.Quantity;
-            existingItem.Price = item.Price;
-        }
+        if (existingItem is null) return Task.CompletedTask;
+        existingItem.Name = item.Name;
+        existingItem.Quantity = item.Quantity;
+        existingItem.Price = item.Price;
 
         return Task.CompletedTask;
     }
@@ -37,7 +35,7 @@ public class InventoryRepository : IInventoryRepository
     public Task DeleteItem(int id)
     {
         var item = _items.FirstOrDefault(i => i.Id == id);
-        if (item != null)
+        if (item is not null)
         {
             _items.Remove(item);
         }
