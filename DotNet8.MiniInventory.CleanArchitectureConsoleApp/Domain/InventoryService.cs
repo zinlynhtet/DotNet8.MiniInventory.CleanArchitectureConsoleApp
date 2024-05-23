@@ -26,7 +26,7 @@ public class InventoryService
     public async Task UpdateItem(int id, string name, int quantity, decimal price)
     {
         var item = await _repository.GetItemById(id);
-        if (item != null)
+        if (item is not null)
         {
             item.Name = name;
             item.Quantity = quantity;
