@@ -1,6 +1,6 @@
 public class InventoryRepository : IInventoryRepository
 {
-    private readonly List<InventoryItem> _items = new List<InventoryItem>();
+    private readonly List<InventoryItem> _items = new ();
     private int _nextId = 1;
 
     public Task AddItem(InventoryItem item)
